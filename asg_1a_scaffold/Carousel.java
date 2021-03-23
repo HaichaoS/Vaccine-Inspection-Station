@@ -133,5 +133,32 @@ public class Carousel {
     public String toString() {
         return java.util.Arrays.toString(compartment);
     }
+    
+    /**
+    * move the vaccine from carousel to shuttle in compartment 3
+    * @return vaccine in compartment 3
+    * @throws InterruptedException
+    */
+    public synchronized Vial shuttleVail() 
+            throws InterruptedException {
+        Vail vail = compartment[2];
+        compartment[2] = null;
+        checkCompartment();
+    }
+
+    public synchronized void returnVail(Vail vail)
+            throws InterruptedException {
+        vail.setInspected();
+        compartment[2] = vail;
+        checkCompartment();
+    }
+
+    public boolean checkCompartment() {
+        if (compartment[2] == null) {
+            return true;
+        } else {
+            return false ;
+        }
+    }
 
 }
