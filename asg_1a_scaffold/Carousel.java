@@ -139,17 +139,18 @@ public class Carousel {
     * @return vaccine in compartment 3
     * @throws InterruptedException
     */
-    public synchronized Vial shuttleVail() 
+    public synchronized Vial shuttleVial()
             throws InterruptedException {
-        Vail vail = compartment[2];
+        Vial vial = compartment[2];
         compartment[2] = null;
         checkCompartment();
+        return vial;
     }
 
-    public synchronized void returnVail(Vail vail)
+    public synchronized void returnVial(Vial vial)
             throws InterruptedException {
-        vail.setInspected();
-        compartment[2] = vail;
+        vial.setInspected();
+        compartment[2] = vial;
         checkCompartment();
     }
 
