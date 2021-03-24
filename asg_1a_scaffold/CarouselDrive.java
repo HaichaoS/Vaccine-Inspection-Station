@@ -26,6 +26,11 @@ public class CarouselDrive extends VaccineHandlingThread {
                 // spend DRIVE_TIME milliseconds rotating the carousel
                 Thread.sleep(Params.DRIVE_TIME);
                 carousel.rotate();
+
+                if(carousel.checkTag()) {
+                    Thread.sleep(Params.SHUTTLE_TIME  + Params.SHUTTLE_TIME + Params.INSPECT_TIME);
+                }
+
             } catch (OverloadException e) {
                 terminate(e);
             } catch (InterruptedException e) {

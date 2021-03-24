@@ -43,19 +43,19 @@ public class Shuttle extends VaccineHandlingThread {
                             inspectionBay.setVial(vial);
                             System.out.println(indentation + vial + " [ c3 -> S ]");
                             this.occupied = true;
-//                            sleep(Params.SHUTTLE_TIME);
+                            sleep(Params.SHUTTLE_TIME);
 
                             // send the vial from shuttle to the inspection bay
                             System.out.println(indentation + vial + " [ S -> I ]");
                             inspectionBay.checkVial();
                             this.occupied = false;
-//                            sleep(Params.INSPECT_TIME);
+                            sleep(Params.INSPECT_TIME);
 
                             // get the vial from inspection bay to shuttle after inspection
                             vial = inspectionBay.getVial();
                             this.occupied = true;
                             System.out.println(indentation + vial + " [ I -> S ]");
-//                            sleep(Params.SHUTTLE_TIME);
+                            sleep(Params.SHUTTLE_TIME);
 
                             // send the vial from shuttle to  carousel
                             if (carousel.checkCompartment()) {
@@ -68,7 +68,6 @@ public class Shuttle extends VaccineHandlingThread {
                         }
                     }
                     notifyAll();
-                    sleep(Params.SHUTTLE_TIME + Params.INSPECT_TIME + Params.SHUTTLE_TIME);
 
                 } catch (InterruptedException e) {
                     this.interrupt();
