@@ -28,6 +28,6 @@ public class Params {
 	public final static int INSPECT_TIME = 5000;
 	
 	// probability that a vial is defective
-	public final static double DEFECT_PROB = 0.8;
+	public final static double DEFECT_PROB = 0.3;
 	
 }
