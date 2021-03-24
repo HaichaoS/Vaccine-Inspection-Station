@@ -12,6 +12,8 @@ public class Carousel {
     // to help format output trace
     final private static String indentation = "                  ";
 
+    protected Scanner scanner;
+
     /**
      * Create a new, empty carousel, initialised to be empty.
      */
@@ -163,15 +165,7 @@ public class Carousel {
     }
 
     public boolean checkTag() {
-        if (compartment[2] == null) {
-            return false;
-        }
-
-        if (compartment[2].isInspected() && compartment[2].isTagged()) {
-            return true;
-        } else {
-            return false;
-        }
+        return scanner.alarm(compartment);
     }
 
 }

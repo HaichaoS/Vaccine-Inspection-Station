@@ -11,6 +11,7 @@ public class InspectionBay extends VaccineHandlingThread {
     public InspectionBay() {
         super();
         this.occupied = false;
+        this.vial = null;
     }
 
     public void run() {
@@ -36,6 +37,22 @@ public class InspectionBay extends VaccineHandlingThread {
         } else {
             vial.setInspected();
         }
+    }
+
+    public void setVial(Vial vail) {
+        this.occupied = true;
+        this.vial = vail;
+    }
+
+    public boolean getOccupied() {
+        return this.occupied;
+    }
+
+    public Vial getVial() {
+        Vial taggedVail = this.vial;
+        this.vial = null;
+        this.occupied = false;
+        return taggedVail;
     }
 
 }
