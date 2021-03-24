@@ -21,6 +21,8 @@ public class Shuttle extends VaccineHandlingThread {
                     if(carousel.checkTag()) {
 
                     }
+                } catch (InterruptedException e) {
+                    this.interrupt();
                 }
             }
         }
