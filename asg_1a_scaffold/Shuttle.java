@@ -25,6 +25,7 @@ public class Shuttle extends VaccineHandlingThread {
             while (!isInterrupted()) {
                 try{
                     if(carousel.checkTag()) {
+//                        System.out.println("Scanner checked Tag!!");
                         if (inspectionBay.getOccupied()) {
                             wait();
                         } else if (this.occupied) {
@@ -35,16 +36,24 @@ public class Shuttle extends VaccineHandlingThread {
                             System.out.println(indentation + vial + " [ c3 -> S ]");
                             this.occupied = true;
 
-                            inspectionBay.checkVial();
+                            sleep(Params.SHUTTLE_TIME);
+
                             System.out.println(indentation + vial + " [ S -> I ]");
+                            inspectionBay.checkVial();
                             this.occupied = false;
 
+                            sleep(Params.INSPECT_TIME);
+
                             vial = inspectionBay.getVial();
+                            this.occupied = true;
                             System.out.println(indentation + vial + " [ I -> S ]");
+                            
+                            sleep(Params.SHUTTLE_TIME);
 
                             if (carousel.checkCompartment()) {
                                 carousel.returnVial(vial);
                                 System.out.println(indentation + vial + " [ S -> c3 ]");
+                                this.occupied = false;
                             } else {
                                 wait();
                             }
@@ -52,9 +61,6 @@ public class Shuttle extends VaccineHandlingThread {
                     }
 
                     notifyAll();
-                    Random random = new Random();
-                    int sleepTime = random.nextInt(Params.SHUTTLE_TIME);
-                    sleep(sleepTime);
                 } catch (InterruptedException e) {
                     this.interrupt();
                 }

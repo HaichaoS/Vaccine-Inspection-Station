@@ -22,6 +22,8 @@ public class Carousel {
         for (int i = 0; i < compartment.length; i++) {
             compartment[i] = null;
         }
+        this.scanner = new Scanner();
+//        System.out.println("Scanner Created!!");
     }
 
     /**
@@ -139,18 +141,15 @@ public class Carousel {
     /**
     * move the vaccine from carousel to shuttle in compartment 3
     * @return vaccine in compartment 3
-    * @throws InterruptedException
-    */
-    public synchronized Vial shuttleVial()
-            throws InterruptedException {
+     */
+    public synchronized Vial shuttleVial() {
         Vial vial = compartment[2];
         compartment[2] = null;
         checkCompartment();
         return vial;
     }
 
-    public synchronized void returnVial(Vial vial)
-            throws InterruptedException {
+    public synchronized void returnVial(Vial vial) {
         vial.setInspected();
         compartment[2] = vial;
         checkCompartment();
