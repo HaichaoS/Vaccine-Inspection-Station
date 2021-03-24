@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd06fb61-920e-4646-8782-4a1833241c52" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/Carousel.class" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/Carousel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.class" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/InspectionBay.class" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/InspectionBay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/Params.class" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/Params.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/Scanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/Scanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/Shuttle.class" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/Shuttle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/Shuttle.java" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/Shuttle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asg_1a_scaffold/Vial.java" beforeDir="false" afterPath="$PROJECT_DIR$/asg_1a_scaffold/Vial.java" afterDir="false" />
-    </list>
+    <list default="true" id="dd06fb61-920e-4646-8782-4a1833241c52" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Params.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
+            <state relative-caret-position="178">
               <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
             </state>
           </provider>
@@ -46,7 +36,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="265">
               <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
             </state>
           </provider>
@@ -64,8 +54,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Vial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="25" />
+            <state relative-caret-position="1035">
+              <caret line="83" column="23" lean-forward="true" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Params.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -218,12 +217,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616503769474</updated>
-      <workItem from="1616503773966" duration="21203000" />
+      <workItem from="1616503773966" duration="21956000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21203000" />
+    <option name="totallyTimeSpent" value="21956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
@@ -239,7 +238,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.30232558" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.2653899" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -338,13 +337,6 @@
     <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Shuttle.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Params.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Sim.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="67">
@@ -373,20 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Params.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Shuttle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -401,10 +379,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/CarouselDrive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Params.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Params.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/asg_1a_scaffold/Vial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="25" />
+        <state relative-caret-position="1035">
+          <caret line="83" column="23" lean-forward="true" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
         </state>
       </provider>
     </entry>
