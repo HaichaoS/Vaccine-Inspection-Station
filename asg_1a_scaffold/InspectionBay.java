@@ -24,7 +24,7 @@ public class InspectionBay extends VaccineHandlingThread {
                         wait();
                     }
                     checkVial();
-                    
+
                     notifyAll();
                     Random random = new Random();
                     int sleepTime = random.nextInt(Params.INSPECT_TIME);
