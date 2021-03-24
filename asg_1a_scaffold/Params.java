@@ -29,5 +29,8 @@ public class Params {
 	
 	// probability that a vial is defective
 	public final static double DEFECT_PROB = 0.3;
+
+	// the index place where shuttle connects the carousel
+	public final static int SHUTTLE_INDEX = 2;
 	
 }

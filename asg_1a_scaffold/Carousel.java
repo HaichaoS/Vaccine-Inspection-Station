@@ -22,8 +22,9 @@ public class Carousel {
         for (int i = 0; i < compartment.length; i++) {
             compartment[i] = null;
         }
+
+        // create scanner between compartment 2 and 3
         this.scanner = new Scanner();
-//        System.out.println("Scanner Created!!");
     }
 
     /**
@@ -139,22 +140,30 @@ public class Carousel {
     }
     
     /**
-    * move the vaccine from carousel to shuttle in compartment 3
-    * @return vaccine in compartment 3
+    * move the vial from carousel to shuttle in compartment 3
+    * @return vial in compartment 3
      */
     public synchronized Vial shuttleVial() {
-        Vial vial = compartment[2];
-        compartment[2] = null;
+        Vial vial = compartment[Params.SHUTTLE_INDEX];
+        compartment[Params.SHUTTLE_INDEX] = null;
         checkCompartment();
         return vial;
     }
 
+    /**
+     * return the vial back from shuttle to carousel
+     * @param vial the vial on shuttle
+     */
     public synchronized void returnVial(Vial vial) {
         vial.setInspected();
         compartment[2] = vial;
         checkCompartment();
     }
 
+    /**
+     * check if there is a vial at compartment 3
+     * @return true if there is a vial, otherwise false
+     */
     public boolean checkCompartment() {
         if (compartment[2] == null) {
             return true;
@@ -163,6 +172,10 @@ public class Carousel {
         }
     }
 
+    /**
+     * call scanner to check the vial rotating through compartment 2 and 3
+     * @return true if the vial is defective, otherwise false
+     */
     public boolean checkTag() {
         return scanner.alarm(compartment);
     }

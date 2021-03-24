@@ -24,7 +24,7 @@ public class Vial {
     // create a new vial with a given ID
     private Vial(int id) {
         this.id = id;
-        if (r.nextFloat() < Params.DEFECT_PROB) {
+        if (0 < Params.DEFECT_PROB) {
          	defective = true;
         }
     }

@@ -1,5 +1,3 @@
-import java.util.Random;
-
 /**
  * Haichao Song
  * Description:
@@ -27,7 +25,6 @@ public class Shuttle extends VaccineHandlingThread {
                     if(carousel.checkTag()) {
 //                        System.out.println("Scanner checked Tag!!");
                         if (inspectionBay.getOccupied() || this.occupied) {
-                            carousel.wait();
                             wait();
                         } else {
                             vial = carousel.shuttleVial();
@@ -35,19 +32,19 @@ public class Shuttle extends VaccineHandlingThread {
                             System.out.println(indentation + vial + " [ c3 -> S ]");
                             this.occupied = true;
 
-                            sleep(Params.SHUTTLE_TIME);
+//                            sleep(Params.SHUTTLE_TIME);
 
                             System.out.println(indentation + vial + " [ S -> I ]");
                             inspectionBay.checkVial();
                             this.occupied = false;
 
-                            sleep(Params.INSPECT_TIME);
+//                            sleep(Params.INSPECT_TIME);
 
                             vial = inspectionBay.getVial();
                             this.occupied = true;
                             System.out.println(indentation + vial + " [ I -> S ]");
 
-                            sleep(Params.SHUTTLE_TIME);
+//                            sleep(Params.SHUTTLE_TIME);
 
                             if (carousel.checkCompartment()) {
                                 carousel.returnVial(vial);
@@ -58,8 +55,10 @@ public class Shuttle extends VaccineHandlingThread {
                             }
                         }
                     }
-
                     notifyAll();
+
+                    sleep(Params.SHUTTLE_TIME + Params.INSPECT_TIME + Params.SHUTTLE_TIME);
+
                 } catch (InterruptedException e) {
                     this.interrupt();
                 }
