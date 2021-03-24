@@ -40,10 +40,11 @@ public class Shuttle extends VaccineHandlingThread {
                             this.occupied = false;
 
                             vial = inspectionBay.getVial();
+                            System.out.println(indentation + vial + " [ I -> S ]");
 
                             if (carousel.checkCompartment()) {
                                 carousel.returnVial(vial);
-                                System.out.println(indentation + vial + " [  -> I ]");
+                                System.out.println(indentation + vial + " [ S -> c3 ]");
                             } else {
                                 wait();
                             }
