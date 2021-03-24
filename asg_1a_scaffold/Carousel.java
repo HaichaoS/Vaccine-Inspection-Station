@@ -162,4 +162,16 @@ public class Carousel {
         }
     }
 
+    public boolean checkTag() {
+        if (compartment[2] == null) {
+            return false;
+        }
+
+        if (compartment[2].isInspected() && compartment[2].isTagged()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
