@@ -26,9 +26,7 @@ public class Sim {
         // check all threads still live
         while (consumer.isAlive() && 
                producer.isAlive() && 
-               driver.isAlive() &&
-                inspectionBay.isAlive() &&
-                shuttle.isAlive())
+               driver.isAlive())
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
