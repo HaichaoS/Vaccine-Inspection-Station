@@ -13,15 +13,19 @@ public class Carousel {
     final private static String indentation = "                  ";
 
     protected Scanner scanner;
+    protected String name;
+    protected int length;
 
     /**
      * Create a new, empty carousel, initialised to be empty.
      */
-    public Carousel() {
-        compartment = new Vial[Params.CAROUSEL_SIZE];
-        for (int i = 0; i < compartment.length; i++) {
+    public Carousel(String name, int length) {
+        compartment = new Vial[length];
+        for (int i = 0; i < length; i++) {
             compartment[i] = null;
         }
+        this.name = name;
+        this.length = length;
 
         // create scanner between compartment 2 and 3
         this.scanner = new Scanner();
