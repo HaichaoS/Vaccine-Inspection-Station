@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sol1/Sol1.iml" filepath="$PROJECT_DIR$/Sol1/Sol1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sol2/Sol2.iml" filepath="$PROJECT_DIR$/Sol2/Sol2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vaccine-Inspection-Station.iml" filepath="$PROJECT_DIR$/Vaccine-Inspection-Station.iml" />
     </modules>
   </component>
