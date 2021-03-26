@@ -32,5 +32,14 @@ public class Params {
 
 	// the index place where shuttle connects the carousel
 	public final static int SHUTTLE_INDEX = 2;
-	
+
+	public final static int SHUTTLE_ADD_TIME = 900;
+
+	public final static String CAROUSEL_NAME = "C";
+
+	public final static String CAROUSEL_ADD_NAME = "c";
+
+	public final static String SHUTTLE_NAME = "S";
+
+	public final static String SHUTTLE_ADD_NAME = "s";
 }

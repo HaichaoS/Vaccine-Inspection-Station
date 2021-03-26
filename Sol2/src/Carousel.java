@@ -28,7 +28,11 @@ public class Carousel {
         this.length = length;
 
         // create scanner between compartment 2 and 3
-        this.scanner = new Scanner();
+        if (name == Params.CAROUSEL_NAME) {
+            this.scanner = new Scanner();
+        } else {
+            this.scanner = null;
+        }
     }
 
     /**
@@ -116,7 +120,7 @@ public class Carousel {
                 System.out.println(
                 		indentation +
                 		this.compartment[i-1] +
-                        " [ c" + (i) + " -> c" + (i+1) +" ]");
+                        " [ " + this.name + (i) + " -> " + this.name + (i+1) +" ]");
             }
             compartment[i] = compartment[i-1];
         }
@@ -150,7 +154,7 @@ public class Carousel {
     public synchronized Vial shuttleVial() {
         Vial vial = compartment[Params.SHUTTLE_INDEX];
         compartment[Params.SHUTTLE_INDEX] = null;
-        checkCompartment();
+        checkCompartment(2);
         return vial;
     }
 
@@ -158,18 +162,18 @@ public class Carousel {
      * return the vial back from shuttle to carousel
      * @param vial the vial on shuttle
      */
-    public synchronized void returnVial(Vial vial) {
+    public synchronized void returnVial(Vial vial, int index) {
         vial.setInspected();
-        compartment[2] = vial;
-        checkCompartment();
+        compartment[index] = vial;
+        checkCompartment(0);
     }
 
     /**
      * check if there is a vial at compartment 3
      * @return true if there is a vial, otherwise false
      */
-    public boolean checkCompartment() {
-        if (compartment[2] == null) {
+    public boolean checkCompartment(int index) {
+        if (compartment[index] == null) {
             return true;
         } else {
             return false ;

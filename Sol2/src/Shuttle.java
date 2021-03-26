@@ -10,6 +10,7 @@ public class Shuttle extends VaccineHandlingThread {
     protected Carousel carousel;   // the carousel shuttle connects to
     protected InspectionBay inspectionBay;  // the inspection bay shuttle connects to
     protected boolean occupied;    // a variable shows if the bay is already occupied by a vial
+    protected String name;
 
     final private static String indentation = "                  ";
 
@@ -18,11 +19,12 @@ public class Shuttle extends VaccineHandlingThread {
      * @param carousel the carousel shuttle connects to
      * @param inspectionBay the inspection bay shuttle connects to
      */
-    public Shuttle(Carousel carousel, InspectionBay inspectionBay) {
+    public Shuttle(Carousel carousel, InspectionBay inspectionBay, String name) {
         super();
         this.carousel = carousel;
         this.inspectionBay = inspectionBay;
         this.occupied = false;
+        this.name = name;
     }
 
     /**
@@ -33,38 +35,38 @@ public class Shuttle extends VaccineHandlingThread {
             while (!isInterrupted()) {
                 try{
 
-                    if(carousel.checkTag()) {
+                    if(carousel.name == Params.CAROUSEL_NAME && carousel.checkTag()) {
                         if (inspectionBay.getOccupied() || this.occupied) {
                             wait();
                         } else {
 
                             // get the vial from carousel to shuttle
                             vial = carousel.shuttleVial();
-                            System.out.println(indentation + vial + " [ c3 -> S ]");
+                            System.out.println(indentation + vial + " [ " + carousel.name + "3 -> " + this.name +" ]");
                             this.occupied = true;
 
                             // send the vial from shuttle to the inspection bay
                             sleep(Params.SHUTTLE_TIME);
-                            System.out.println(indentation + vial + " [ S -> I ]");
+                            System.out.println(indentation + vial + " [ " + this.name + " -> I ]");
                             this.occupied = false;
                             inspectionBay.setVial(vial);
 //                            System.out.println(indentation + vial + " set to inspection");
                         }
 
 
-                    } else if (inspectionBay.checkInspected()) {
+                    } else if (carousel.name == Params.CAROUSEL_ADD_NAME && inspectionBay.checkInspected()) {
 
                         // get the vial from inspection bay to shuttle after inspection
                         vial = inspectionBay.getVial();
 //                        System.out.println(indentation + vial + " get from inspection");
                         this.occupied = true;
-                        System.out.println(indentation + vial + " [ I -> S ]");
+                        System.out.println(indentation + vial + " [ I -> " + this.name + " ]");
 
                         // send the vial from shuttle to  carousel
-                        if (carousel.checkCompartment()) {
-                            sleep(Params.SHUTTLE_TIME);
-                            carousel.returnVial(vial);
-                            System.out.println(indentation + vial + " [ S -> c3 ]");
+                        if (carousel.checkCompartment(0)) {
+                            sleep(Params.SHUTTLE_ADD_TIME);
+                            carousel.returnVial(vial, 0);
+                            System.out.println(indentation + vial + " [ " + this.name + " -> " + carousel.name + "1 ]");
                             this.occupied = false;
 
                         }  else {
