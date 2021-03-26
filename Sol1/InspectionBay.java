@@ -28,9 +28,9 @@ public class InspectionBay extends VaccineHandlingThread {
 
                     if (vial != null) {
                         sleep(Params.INSPECT_TIME);
-                        System.out.println(indentation + vial + " start inspect");
+//                        System.out.println(indentation + vial + " start inspect");
                         checkVial();
-                        System.out.println(indentation + vial + " finish inspect");
+//                        System.out.println(indentation + vial + " finish inspect");
                         notifyAll();
                     }
 

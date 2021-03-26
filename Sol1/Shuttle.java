@@ -48,7 +48,7 @@ public class Shuttle extends VaccineHandlingThread {
                             System.out.println(indentation + vial + " [ S -> I ]");
                             this.occupied = false;
                             inspectionBay.setVial(vial);
-                            System.out.println(indentation + vial + " set to inspection");
+//                            System.out.println(indentation + vial + " set to inspection");
                         }
 
 
@@ -56,7 +56,7 @@ public class Shuttle extends VaccineHandlingThread {
 
                         // get the vial from inspection bay to shuttle after inspection
                         vial = inspectionBay.getVial();
-                        System.out.println(indentation + vial + " get from inspection");
+//                        System.out.println(indentation + vial + " get from inspection");
                         this.occupied = true;
                         System.out.println(indentation + vial + " [ I -> S ]");
 

@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd06fb61-920e-4646-8782-4a1833241c52" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol1/InspectionBay.class" beforeDir="false" afterPath="$PROJECT_DIR$/Sol1/InspectionBay.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sol1/InspectionBay.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sol1/InspectionBay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol1/Shuttle.class" beforeDir="false" afterPath="$PROJECT_DIR$/Sol1/Shuttle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sol1/Shuttle.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sol1/Shuttle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Carousel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/CarouselDrive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Consumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/InspectionBay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/OverloadException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Params.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Producer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Scanner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Shuttle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Sim.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/VaccineHandlingThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sol2/Vial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vaccine-Inspection-Station.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Vaccine-Inspection-Station.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,22 +17,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sol1/Shuttle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="58" column="74" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
+            <state relative-caret-position="124">
+              <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sol1/InspectionBay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+            <state relative-caret-position="314">
+              <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
               <folding>
-                <element signature="e#2149#2150#0" expanded="true" />
+                <element signature="e#2153#2154#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -119,8 +103,8 @@
         <option value="$PROJECT_DIR$/asg_1a_scaffold/Scanner.java" />
         <option value="$PROJECT_DIR$/asg_1a_scaffold/Shuttle.java" />
         <option value="$PROJECT_DIR$/Vaccine-Inspection-Station.iml" />
-        <option value="$PROJECT_DIR$/Sol1/Shuttle.java" />
         <option value="$PROJECT_DIR$/Sol1/InspectionBay.java" />
+        <option value="$PROJECT_DIR$/Sol1/Shuttle.java" />
       </list>
     </option>
   </component>
@@ -214,12 +198,12 @@
       <workItem from="1616503773966" duration="21956000" />
       <workItem from="1616675627960" duration="1449000" />
       <workItem from="1616678004395" duration="95000" />
-      <workItem from="1616678190304" duration="5081000" />
+      <workItem from="1616678190304" duration="5335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28581000" />
+    <option name="totallyTimeSpent" value="28835000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -251,7 +235,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32968536" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29001367" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.10123119" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -437,13 +421,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sol1/Shuttle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="58" column="74" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sol1/CarouselDrive.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -464,11 +441,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Sol1/InspectionBay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+        <state relative-caret-position="314">
+          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
           <folding>
-            <element signature="e#2149#2150#0" expanded="true" />
+            <element signature="e#2153#2154#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sol1/Shuttle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
         </state>
       </provider>
     </entry>
