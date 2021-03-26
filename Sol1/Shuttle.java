@@ -40,33 +40,38 @@ public class Shuttle extends VaccineHandlingThread {
 
                             // get the vial from carousel to shuttle
                             vial = carousel.shuttleVial();
-                            inspectionBay.setVial(vial);
                             System.out.println(indentation + vial + " [ c3 -> S ]");
                             this.occupied = true;
-                            sleep(Params.SHUTTLE_TIME);
 
                             // send the vial from shuttle to the inspection bay
-                            System.out.println(indentation + vial + " [ S -> I ]");
-                            inspectionBay.checkVial();
-                            this.occupied = false;
-                            sleep(Params.INSPECT_TIME);
-
-                            // get the vial from inspection bay to shuttle after inspection
-                            vial = inspectionBay.getVial();
-                            this.occupied = true;
-                            System.out.println(indentation + vial + " [ I -> S ]");
                             sleep(Params.SHUTTLE_TIME);
+                            System.out.println(indentation + vial + " [ S -> I ]");
+                            this.occupied = false;
+                            inspectionBay.setVial(vial);
+                            System.out.println(indentation + vial + " set to inspection");
+                        }
 
-                            // send the vial from shuttle to  carousel
-                            if (carousel.checkCompartment()) {
-                                carousel.returnVial(vial);
-                                System.out.println(indentation + vial + " [ S -> c3 ]");
-                                this.occupied = false;
-                            } else {
-                                wait();
-                            }
+
+                    } else if (inspectionBay.checkInspected()) {
+
+                        // get the vial from inspection bay to shuttle after inspection
+                        vial = inspectionBay.getVial();
+                        System.out.println(indentation + vial + " get from inspection");
+                        this.occupied = true;
+                        System.out.println(indentation + vial + " [ I -> S ]");
+
+                        // send the vial from shuttle to  carousel
+                        if (carousel.checkCompartment()) {
+                            sleep(Params.SHUTTLE_TIME);
+                            carousel.returnVial(vial);
+                            System.out.println(indentation + vial + " [ S -> c3 ]");
+                            this.occupied = false;
+
+                        }  else {
+                            wait();
                         }
                     }
+
                     notifyAll();
 
                 } catch (InterruptedException e) {

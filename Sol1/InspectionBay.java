@@ -7,6 +7,7 @@ public class InspectionBay extends VaccineHandlingThread {
 
     protected boolean occupied;    // a variable shows if the bay is already occupied by a vial
     protected Vial vial;          // the vial currently being inspected
+    final private static String indentation = "                  ";
 
     /**
      * Create a new, empty inspection bay, initialised to be empty.
@@ -24,11 +25,15 @@ public class InspectionBay extends VaccineHandlingThread {
         synchronized (this) {
             while(!isInterrupted()) {
                 try{
-                    while(vial == null) {
-                        wait();
+
+                    if (vial != null) {
+                        sleep(Params.INSPECT_TIME);
+                        System.out.println(indentation + vial + " start inspect");
+                        checkVial();
+                        System.out.println(indentation + vial + " finish inspect");
+                        notifyAll();
                     }
-                    checkVial();
-                    notifyAll();
+
                 } catch (InterruptedException e) {
                     this.interrupted();
                 }
@@ -40,12 +45,14 @@ public class InspectionBay extends VaccineHandlingThread {
      * set vial as inspected and
      * if it is needed to be tagged to "destruction
      */
-    public void checkVial() {
-        if(vial.isDefective()){
-            vial.setInspected();
-            vial.setTagged();
-        } else {
-            vial.setInspected();
+    public synchronized void checkVial() {
+        if (vial != null) {
+            if(vial.isDefective()){
+                vial.setInspected();
+                vial.setTagged();
+            } else {
+                vial.setInspected();
+            }
         }
     }
 
@@ -67,7 +74,7 @@ public class InspectionBay extends VaccineHandlingThread {
     }
 
     /**
-     * get the vial from inpection bay out and set the bay to unoccupied
+     * get the vial from inspection bay out and set the bay to unoccupied
      * @return the vial out
      */
     public Vial getVial() {
@@ -76,5 +83,21 @@ public class InspectionBay extends VaccineHandlingThread {
         this.occupied = false;
         return taggedVial;
     }
+
+    /**
+     * check if inspection bay has inspected vial
+     * @return true if it has, otherwise false
+     */
+    public boolean checkInspected() {
+        if (this.vial == null) {
+            return false;
+        }
+
+        if (this.vial.isInspected()) {
+            return true;
+        } else {
+            return false;
+        }
+     }
 
 }
