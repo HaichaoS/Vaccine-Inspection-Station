@@ -9,8 +9,8 @@ public class Sim {
     public static void main(String[] args) {
         
     	// Create system components
-        Carousel carousel = new Carousel(Params.CAROUSEL_NAME, 5);
-        Carousel addCarousel = new Carousel(Params.CAROUSEL_ADD_NAME, 2);
+        Carousel carousel = new Carousel(Params.CAROUSEL_NAME, Params.CAROUSEL_SIZE);
+        Carousel addCarousel = new Carousel(Params.CAROUSEL_ADD_NAME, Params.CAROUSEL_ADD_SIZE);
         Producer producer = new Producer(carousel);
         Consumer consumer = new Consumer(carousel);
         Consumer addConsumer = new Consumer(addCarousel);

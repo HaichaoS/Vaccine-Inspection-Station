@@ -55,7 +55,9 @@ public class Carousel {
         compartment[0] = vial;
 
         // make a note of the event in output trace
-        System.out.println(vial + " inserted");
+        if (this.name == Params.CAROUSEL_NAME) {
+            System.out.println(vial + " inserted");
+        }
 
         // notify any waiting threads that the carousel state has changed
         notifyAll();
@@ -174,9 +176,9 @@ public class Carousel {
      */
     public boolean checkCompartment(int index) {
         if (compartment[index] == null) {
-            return true;
+            return false;
         } else {
-            return false ;
+            return true;
         }
     }
 

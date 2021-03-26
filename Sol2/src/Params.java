@@ -7,6 +7,8 @@ public class Params {
 
     // the number of compartments in this carousel
     public final static int CAROUSEL_SIZE = 5;
+
+	public final static int CAROUSEL_ADD_SIZE = 2;
     
     // the maximum amount of time the producer waits
 	public final static int PRODUCER_MAX_SLEEP = 3000;
