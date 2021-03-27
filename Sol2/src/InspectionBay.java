@@ -7,7 +7,6 @@ public class InspectionBay extends VaccineHandlingThread {
 
     protected boolean occupied;    // a variable shows if the bay is already occupied by a vial
     protected Vial vial;          // the vial currently being inspected
-    final private static String indentation = "                  ";
 
     /**
      * Create a new, empty inspection bay, initialised to be empty.
@@ -28,11 +27,9 @@ public class InspectionBay extends VaccineHandlingThread {
 
                     if (vial != null) {
                         sleep(Params.INSPECT_TIME);
-//                        System.out.println(indentation + vial + " start inspect");
                         checkVial();
-//                        System.out.println(indentation + vial + " finish inspect");
-                        notifyAll();
                     }
+                    notifyAll();
 
                 } catch (InterruptedException e) {
                     this.interrupted();

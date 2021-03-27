@@ -50,14 +50,12 @@ public class Shuttle extends VaccineHandlingThread {
                             System.out.println(indentation + vial + " [ " + this.name + " -> I ]");
                             this.occupied = false;
                             inspectionBay.setVial(vial);
-//                            System.out.println(indentation + vial + " set to inspection");
                         }
 
                     } else if (carousel.name == Params.CAROUSEL_ADD_NAME && inspectionBay.checkInspected()) {
 
                         // get the vial from inspection bay to shuttle after inspection
                         vial = inspectionBay.getVial();
-//                        System.out.println(indentation + vial + " get from inspection");
                         System.out.println(indentation + vial + " [ I -> " + this.name + " ]");
 
                         // send the vial from shuttle to  carousel
@@ -67,7 +65,6 @@ public class Shuttle extends VaccineHandlingThread {
                             carousel.putVial(vial);
                         }
                     }
-
                     notifyAll();
 
                 } catch (InterruptedException e) {

@@ -85,8 +85,7 @@ public class Carousel {
         compartment[compartment.length - 1] = null;
 
         // make a note of the event in output trace
-        System.out.print(indentation + indentation);
-        System.out.println(vial + " removed");
+        System.out.println(indentation + indentation + vial + " removed");
 
         // notify any waiting threads that the carousel has changed
         notifyAll();

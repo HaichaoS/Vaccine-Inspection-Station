@@ -26,16 +26,8 @@ public class CarouselDrive extends VaccineHandlingThread {
                 // spend DRIVE_TIME milliseconds rotating the carousel
                 Thread.sleep(Params.DRIVE_TIME);
 
-//                System.out.println(carousel.name);
-//                if (carousel.name == "C") {
-//                    System.out.println(carousel.checkCompartment(2));
-//                    if(carousel.checkCompartment(2)) {
-//                        System.out.println(carousel.checkTag());
-//                    }
-//                }
-
+                // wait when long carousel have defective vial to send to shuttle
                 if(carousel.name == "C" && carousel.checkCompartment(2) && carousel.checkTag()) {
-//                    System.out.println("Stop Rotating");
                     continue;
                 } else {
                     carousel.rotate();
