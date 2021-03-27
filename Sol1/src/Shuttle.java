@@ -34,42 +34,39 @@ public class Shuttle extends VaccineHandlingThread {
                 try{
 
                     if(carousel.checkTag()) {
-                        if (inspectionBay.getOccupied() || this.occupied) {
+
+                        while(inspectionBay.getOccupied() || this.occupied) {
                             wait();
-                        } else {
-
-                            // get the vial from carousel to shuttle
-                            vial = carousel.shuttleVial();
-                            System.out.println(indentation + vial + " [ c3 -> S ]");
-                            this.occupied = true;
-
-                            // send the vial from shuttle to the inspection bay
-                            sleep(Params.SHUTTLE_TIME);
-                            System.out.println(indentation + vial + " [ S -> I ]");
-                            this.occupied = false;
-                            inspectionBay.setVial(vial);
-//                            System.out.println(indentation + vial + " set to inspection");
                         }
 
+                        // get the vial from carousel to shuttle
+                        vial = carousel.shuttleVial();
+                        System.out.println(indentation + vial + " [ c3 -> S ]");
+                        this.occupied = true;
+
+                        // send the vial from shuttle to the inspection bay
+                        sleep(Params.SHUTTLE_TIME);
+                        System.out.println(indentation + vial + " [ S -> I ]");
+                        this.occupied = false;
+                        inspectionBay.setVial(vial);
 
                     } else if (inspectionBay.checkInspected()) {
 
                         // get the vial from inspection bay to shuttle after inspection
                         vial = inspectionBay.getVial();
-//                        System.out.println(indentation + vial + " get from inspection");
                         this.occupied = true;
                         System.out.println(indentation + vial + " [ I -> S ]");
 
-                        // send the vial from shuttle to  carousel
-                        if (carousel.checkCompartment()) {
-                            sleep(Params.SHUTTLE_TIME);
-                            carousel.returnVial(vial);
-                            System.out.println(indentation + vial + " [ S -> c3 ]");
-                            this.occupied = false;
-
-                        }  else {
+                        while(!carousel.checkCompartment()) {
                             wait();
                         }
+
+                        // send the vial from shuttle to  carousel
+                        sleep(Params.SHUTTLE_TIME);
+                        carousel.returnVial(vial);
+                        System.out.println(indentation + vial + " [ S -> c3 ]");
+                        this.occupied = false;
+
                     }
 
                     notifyAll();
