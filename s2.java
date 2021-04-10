@@ -27,13 +27,12 @@ CAROUSEL[s1:State][s2:State][s3:State][s4:State][s5:State] =
 		|undective_vial -> CAROUSEL[UNDEF_VIAL][s2][s3][s4][s5]
 		)
 	|when(s5 != NO_VIAL) remove -> CAROUSEL[s1][s2][s3][s4][NO_VIAL]
+	|when((s1 != NO_VIAL || s2 != NO_VIAL || s4 != NO_VIAL) && s3 == NO_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
 	|when(s3 != NO_VIAL) scan ->
 		(
 		when(s3 == DEF_VIAL) puton -> CAROUSEL[s1][s2][NO_VIAL][s4][s5]
-		|when(s3 == UNDEF_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
+		|when(s3 != DEF_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
 		)
-	|when(s3 == NO_VIAL) getback -> CAROUSEL[s1][s2][DEFINS_VIAL][s4][s5]
-	|rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
 ).
 
 ADDCAROUSEL = ADDCAROUSEL[NO_VIAL][NO_VIAL],
