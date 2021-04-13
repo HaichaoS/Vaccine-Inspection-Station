@@ -30,17 +30,17 @@ CAROUSEL[s1:State][s2:State][s3:State][s4:State][s5:State] =
 	when (s1 == NO_VIAL) insert -> 
 		(
 		defective_vial -> CAROUSEL[DEF_VIAL][s2][s3][s4][s5]
-		|undective_vial -> CAROUSEL[UNDEF_VIAL][s2][s3][s4][s5]
+		|undefective_vial -> CAROUSEL[UNDEF_VIAL][s2][s3][s4][s5]
 		)
 	// when s5 has vial, the consumer need to remove the vial
 	|when(s5 != NO_VIAL) remove -> CAROUSEL[s1][s2][s3][s4][NO_VIAL]
 	// when s3 has vial, it processes scan
-	// if it is a defective vial, shuttle put it to inspect
+	// if it is a defective vial, shuttle put it to inspect and get back later
 	// if it is an undefective vial and s5 has no vial, carousel continue rotating
 	|when(s3 != NO_VIAL) scan ->
 		(
 		when(s3 == DEF_VIAL) puton -> getback -> CAROUSEL[s1][s2][DEF_VIAL][s4][s5]
-		|when(s3 != DEF_VIAL && s5 != NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
+		|when(s3 != DEF_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
 		)
 	// in other situations when carousel has vials on it, it rotates
 	|when((s1 != NO_VIAL || s2 != NO_VIAL || s4 != NO_VIAL) && s3 == NO_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
@@ -56,7 +56,7 @@ SHUT[i:Occupy] =
 	|when(i == UNOCCUPIED) geton -> set_occupied -> getback -> set_unoccupied -> SHUT[UNOCCUPIED]
 ).
 
-// the inspection bay has twp states to determine if it is occupied
+// the inspection bay has two states to determine if it is occupied
 // it processes the action that inspect the vial and get it back to shuttle
 INSPECTIONBAY = INSP[UNOCCUPIED],
 INSP[i:Occupy] = 
@@ -69,9 +69,9 @@ INSP[i:Occupy] =
 
 // Safety check
 // check shuttle moves the vial from the carousel to the inspection bay safely
-property SAFE_PUT = ( puton -> set_occupied -> putto -> SAFE_PUT ).
+property SAFE_PUT = ( puton -> set_occupied -> putto -> set_unoccupied -> SAFE_PUT ).
 // check shuttle moves the vial from the inspection bay to the carousel safely
-property SAFE_GET = ( geton -> set_unoccupied -> getback -> SAFE_GET ).
+property SAFE_GET = ( geton -> set_unoccupied -> getback -> set_unoccupied -> SAFE_GET ).
 
 // Synchronized safety check
 ||SAFE_CHECK = (SIM || SAFE_PUT || SAFE_GET ).
