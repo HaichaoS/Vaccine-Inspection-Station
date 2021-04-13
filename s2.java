@@ -1,74 +1,97 @@
-const UNOCCUPIED = 0
-const OCCUPIED = 1
+// Name: Haichao Song
+// ID: 854035
+// FPS model for Solution 2
 
-const NO_VIAL = 0
-const DEF_VIAL = 1
-const UNDEF_VIAL = 2
-const DEFINS_VIAL = 3
+const UNOCCUPIED = 0	// the variable indicates the component carries no vial
+const OCCUPIED = 1	// the variable indicates the component carries a vial
 
-range State = NO_VIAL..DEFINS_VIAL
-range Occupy = UNOCCUPIED..OCCUPIED
+const NO_VIAL = 0	// the state when the compartment carries no vial 
+const DEF_VIAL = 1	// the state when the compartment carries a defective vial
+const UNDEF_VIAL = 2  // the state when the compartment carries an undefective vial
 
+range State = NO_VIAL..UNDEF_VIAL  // the states for compartments of the carousel
+range Occupy = UNOCCUPIED..OCCUPIED	 // the states for the shuttle and the inspection bay
+
+// the producer has one action insert
 PRODUCER = ( insert -> PRODUCER ).
 
+// the consumer has one action remove
 CONSUMER = ( remove -> CONSUMER ).
 
-ADDCONSUMER = ( remove -> ADDCONSUMER ).
+// the additional consumer has one action remove
+ADDCONSUMER = ( add_remove -> ADDCONSUMER ).
 
+// the scanner has one action scan
 SCANNER = ( scan -> SCANNER ).
 
+// the carousel processes 5 compartments
 CAROUSEL = CAROUSEL[NO_VIAL][NO_VIAL][NO_VIAL][NO_VIAL][NO_VIAL],
 CAROUSEL[s1:State][s2:State][s3:State][s4:State][s5:State] = 
 (
-	
+
+	// when s1 has no vial, producer can insert defective or undefective vial to the compartment 1
 	when (s1 == NO_VIAL) insert -> 
 		(
 		defective_vial -> CAROUSEL[DEF_VIAL][s2][s3][s4][s5]
-		|undective_vial -> CAROUSEL[UNDEF_VIAL][s2][s3][s4][s5]
+		|undefective_vial -> CAROUSEL[UNDEF_VIAL][s2][s3][s4][s5]
 		)
+	// when s5 has vial, the consumer need to remove the vial
 	|when(s5 != NO_VIAL) remove -> CAROUSEL[s1][s2][s3][s4][NO_VIAL]
+	// in other situations when carousel has vials on it, it rotates
 	|when((s1 != NO_VIAL || s2 != NO_VIAL || s4 != NO_VIAL) && s3 == NO_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
-	|when(s3 != NO_VIAL) scan ->
-		(
-		when(s3 == DEF_VIAL) puton -> CAROUSEL[s1][s2][NO_VIAL][s4][s5]
-		|when(s3 != DEF_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
+	// when s3 has vial, it processes scan
+	// if it is a defective vial, shuttle put it to inspect and get back later
+	// if it is an undefective vial and s5 has no vial, carousel continue rotating
+	|when(s3 != NO_VIAL) scan -> 
+		( 
+		  when(s3 == UNDEF_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
+		 |when(s3 == DEF_VIAL) puton -> CAROUSEL[s1][s2][NO_VIAL][s4][s5]
 		)
 ).
 
+// the additional carousel processes 2 compartments
 ADDCAROUSEL = ADDCAROUSEL[NO_VIAL][NO_VIAL],
 ADDCAROUSEL[s1:State][s2:State] = 
-(
-
-	when (s1 == NO_VIAL) getto -> ADDCAROUSEL[DEFINS_VIAL][s2]
-	|when (s2 != NO_VIAL) remove -> ADDCAROUSEL[s1][NO_VIAL]
-	|when((s1 != NO_VIAL) && (s2 == NO_VIAL)) rotate -> ADDCAROUSEL[NO_VIAL][s1]
+(	 
+	// when s1 has no vial, additional shuttle can get vial to s1 compartment
+	when(s1 == NO_VIAL) getto -> ADDCAROUSEL[UNDEF_VIAL][s2]
+	// when s2 has vial, additional consumer can remove vial at s2 compartment 
+	|when(s2 != NO_VIAL) add_remove -> ADDCAROUSEL[s1][NO_VIAL]
+	// when s1 has vial and s2 has no vial, rotate vial from s1 to s2
+	|when((s1 != NO_VIAL) && (s2 == NO_VIAL)) add_rotate -> ADDCAROUSEL[NO_VIAL][s1]
 ).
 
+// the shuttle has one actions, get the vial from carousel and put it to the inspection bay
 SHUTTLE = SHUT[UNOCCUPIED],
 SHUT[i:Occupy] = 
-(
-	when(i == UNOCCUPIED) puton -> set_shuttle_occupied -> putto -> SHUT[OCCUPIED]
-	|when(i == OCCUPIED) set_shuttle_unoccupied -> SHUT[UNOCCUPIED]
+(	 
+	when(i == UNOCCUPIED) puton -> set_shuttle_occupied -> putto -> set_shuttle_unoccupied -> SHUT[UNOCCUPIED]
 ).
 
-ADDSHUTTTLE = ADDSHUT[UNOCCUPIED],
+// the additional shuttle has one actions, get the vial from the inspection bay and get it to the additional carousel
+ADDSHUTTLE =  ADDSHUT[UNOCCUPIED],
 ADDSHUT[i:Occupy] = 
-(
-	when(i == UNOCCUPIED) geton -> set_addshuttle_occupied -> getto -> ADDSHUT[OCCUPIED]
-	|when(i == OCCUPIED) set_addshuttle_unoccupied -> ADDSHUT[UNOCCUPIED]
+(	 
+	when(i == UNOCCUPIED) geton -> set_addshuttle_occupied -> getto -> set_addshuttle_unoccupied -> ADDSHUT[UNOCCUPIED]
 ).
 
+// the inspection bay has two states to determine if it is occupied
+// it processes the action that inspect the vial and get it to the additional shuttle
 INSPECTIONBAY = INSP[UNOCCUPIED],
 INSP[i:Occupy] = 
-(
-	when(i == UNOCCUPIED) putto -> set_inspection_occupied -> addInspectedTagged  -> geton -> INSP[OCCUPIED]
-	|when(i == OCCUPIED) set_inspection_unoccupied -> INSP[UNOCCUPIED]
+(	
+	when(i == UNOCCUPIED) putto -> set_ins_occupied -> addInspectedTagged -> geton -> get_ins_unoccupied -> INSP[UNOCCUPIED]
 ).
 
-||SIM = ( PRODUCER || CONSUMER || CAROUSEL || SCANNER || SHUTTLE || INSPECTIONBAY || ADDSHUTTTLE || ADDCAROUSEL || ADDCONSUMER).
+// Synchronized process 
+||SIM = ( PRODUCER || CONSUMER || ADDCONSUMER || CAROUSEL || ADDCAROUSEL || SCANNER || SHUTTLE || INSPECTIONBAY || ADDSHUTTLE )<<{addInspectedTagged, geton}.
 
-property SAFE_PUT = ( puton -> set_shuttle_occupied -> putto -> SAFE_PUT ).
-property SAFE_GET = ( geton -> set_addshuttle_occupied -> getto -> SAFE_GET ).
-property SAFE_INSP = ( putto -> set_inspection_occupied -> addInspectedTagged -> geton -> SAFE_INSP ).
+// Safety check
+// check shuttle moves the vial from the carousel to the inspection bay safely
+property SAFE_PUT = (puton -> set_shuttle_occupied -> putto -> set_shuttle_unoccupied -> SAFE_PUT).
+// check shuttle moves the vial from the inspection bay to the additional carousel safely
+property SAFE_GET = (geton -> set_addshuttle_occupied -> getto -> set_addshuttle_unoccupied -> SAFE_GET).
 
-||SAFE_CHECK = (SIM || SAFE_PUT || SAFE_GET || SAFE_INSP ).
+||SAFE_CHECK = (SIM || SAFE_PUT || SAFE_GET).
+
+
