@@ -39,11 +39,12 @@ CAROUSEL[s1:State][s2:State][s3:State][s4:State][s5:State] =
 	// if it is an undefective vial and s5 has no vial, carousel continue rotating
 	|when(s3 != NO_VIAL) scan ->
 		(
-		when(s3 == DEF_VIAL) puton -> getback -> CAROUSEL[s1][s2][DEF_VIAL][s4][s5]
-		|when(s3 != DEF_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
+		when(s3 == DEF_VIAL) puton -> CAROUSEL[s1][s2][NO_VIAL][s4][s5]
+		|when(s3 != DEF_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
 		)
+	|when(s3 == NO_VIAL) getback -> rotate -> CAROUSEL[NO_VIAL][s1][s2][DEF_VIAL][s4]
 	// in other situations when carousel has vials on it, it rotates
-	|when((s1 != NO_VIAL || s2 != NO_VIAL || s4 != NO_VIAL) && s3 == NO_VIAL && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
+	|when((s1 != NO_VIAL || s2 != NO_VIAL || s4 != NO_VIAL) && s5 == NO_VIAL) rotate -> CAROUSEL[NO_VIAL][s1][s2][s3][s4]
 	
 ).
 
@@ -52,8 +53,8 @@ CAROUSEL[s1:State][s2:State][s3:State][s4:State][s5:State] =
 SHUTTLE = SHUT[UNOCCUPIED],
 SHUT[i:Occupy] = 
 (
-	when(i == UNOCCUPIED) puton -> set_occupied -> putto -> set_unoccupied -> SHUT[UNOCCUPIED]
-	|when(i == UNOCCUPIED) geton -> set_occupied -> getback -> set_unoccupied -> SHUT[UNOCCUPIED]
+	when(i == UNOCCUPIED) puton  -> putto -> SHUT[UNOCCUPIED]
+	|when(i == UNOCCUPIED) geton -> getback -> SHUT[UNOCCUPIED]
 ).
 
 // the inspection bay has two states to determine if it is occupied
@@ -69,9 +70,9 @@ INSP[i:Occupy] =
 
 // Safety check
 // check shuttle moves the vial from the carousel to the inspection bay safely
-property SAFE_PUT = ( puton -> set_occupied -> putto -> set_unoccupied -> SAFE_PUT ).
+property SAFE_PUT = ( puton -> putto -> SAFE_PUT ).
 // check shuttle moves the vial from the inspection bay to the carousel safely
-property SAFE_GET = ( geton -> set_unoccupied -> getback -> set_unoccupied -> SAFE_GET ).
+property SAFE_GET = ( geton -> getback -> SAFE_GET ).
 
 // Synchronized safety check
 ||SAFE_CHECK = (SIM || SAFE_PUT || SAFE_GET ).
