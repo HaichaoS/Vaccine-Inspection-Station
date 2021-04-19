@@ -94,4 +94,7 @@ property SAFE_GET = (geton -> set_addshuttle_occupied -> getto -> set_addshuttle
 
 ||SAFE_CHECK = (SIM || SAFE_PUT || SAFE_GET).
 
+// check vial can finally removed by consumer
+progress VIAL_LIVENESS = {remove, add_remove}
+
 

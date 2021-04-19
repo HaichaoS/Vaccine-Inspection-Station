@@ -76,3 +76,6 @@ property SAFE_GET = ( geton -> getback -> SAFE_GET ).
 
 // Synchronized safety check
 ||SAFE_CHECK = (SIM || SAFE_PUT || SAFE_GET ).
+
+// check vial can finally removed by consumer
+progress VIAL_LIVENESS = {remove}
